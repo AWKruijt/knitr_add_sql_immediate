@@ -537,7 +537,11 @@ htmltools::div(htmltools::img(src = &quot;logo.png&quot;), htmltools::p(&quot;he
 <p>The <code>sql</code> engine recognizes more SQL keywords (e.g., <code>ALTER</code>, <code>GRANT</code>, <code>MERGE</code>, <code>TRUNCATE</code>, <code>CALL</code>) as statements that do not return a result set, so they are dispatched to <code>DBI::dbExecute()</code> instead of <code>DBI::dbGetQuery()</code> (which avoids warnings from some database drivers). In addition, a new chunk option <code>sql.is_statement</code> can be set to <code>TRUE</code> or <code>FALSE</code> to explicitly control this behavior when the automatic detection based on keywords is not correct (e.g., <code>SELECT ... INTO</code>, or <code>UPDATE ... RETURNING</code>) (thanks, <a href="https://github.com/rnorberg">@rnorberg</a>, <a href="https://github.com/yihui/knitr/issues/1896">#1896</a>).</p>
 </li>
 <li>
-<p>The <code>sql</code> engine gained a new chunk option <code>sql.immediate</code> corresponding to the <code>immediate</code> argument of <code>DBI::dbExecute()</code> and <code>DBI::dbGetQuery()</code>. It is only passed to these functions when explicitly set to <code>TRUE</code> or <code>FALSE</code>; otherwise the DBI default (<code>NULL</code>, i.e., the backend chooses the most suitable API) is preserved (thanks, <a href="https://github.com/AWKruijt">@AWKruijt</a>, <a href="https://github.com/yihui/knitr/issues/2128">#2128</a>).</p>
+<p>The <code>sql</code> engine gained a new chunk option <code>sql.args</code>, a named list of extra arguments passed to the underlying DBI query functions (<code>DBI::dbExecute()</code>, <code>DBI::dbSendQuery()</code>, and <code>DBI::dbGetQuery()</code>). This makes it possible to forward any backend-specific argument, e.g., <code>sql.args = list(immediate = TRUE)</code> to control the DBI <code>immediate</code> argument. For the common <code>immediate</code> case, the chunk option <code>sql.immediate</code> (<code>TRUE</code>/<code>FALSE</code>) is also provided as a shortcut. These arguments are passed only when supplied, so DBI’s own defaults are otherwise preserved (thanks, <a href="https://github.com/AWKruijt">@AWKruijt</a>, <a href="https://github.com/yihui/knitr/issues/2128">#2128</a>).</p>
+<pre><code>```{sql, connection=con, sql.args=list(immediate=TRUE)}
+CREATE TEMP TABLE foo AS SELECT 1 AS x
+```
+</code></pre>
 </li>
 </ul>
 <h3 id="sec:bug-fixes_1" class="unnumbered">BUG FIXES</h3>

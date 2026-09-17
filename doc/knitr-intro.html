@@ -13,7 +13,7 @@
 <div class="frontmatter">
 <div class="title"><h1>Not An Introduction to knitr</h1></div>
 <div class="author"><h2>Yihui Xie</h2></div>
-<div class="date"><h3>2026-09-16</h3></div>
+<div class="date"><h3>2026-09-17</h3></div>
 </div>
 <div class="body">
 <p>The <strong>knitr</strong> package is an alternative tool to Sweave based on a different
@@ -28,9 +28,10 @@ and knitr” for this package, too.</p>
 <pre><code class="language-r">options(digits = 4)
 rnorm(20)
 </code></pre>
-<pre><code>#&gt;  [1]  0.8070  0.8527  0.6330  0.8950 -0.4103 -0.8981 -0.1514  0.1366 -0.8203
-#&gt; [10]  0.9095  1.3871  0.6375  0.0369 -0.1021 -0.3058 -1.7787  1.6661 -0.2182
-#&gt; [19] -0.5243 -0.5521
+<pre><code>#&gt;  [1]  5.827e-02  1.371e+00 -5.368e-01  8.433e-01  7.475e-01  3.194e-01
+#&gt;  [7]  5.485e-05  6.988e-01 -2.159e+00  6.148e-01  4.676e-01 -2.543e-01
+#&gt; [13] -2.958e-01 -1.134e+00 -9.321e-01  8.968e-01  1.144e-01 -1.022e-01
+#&gt; [19] -4.144e-01  1.785e+00
 </code></pre>
 <pre><code class="language-r">fit = lm(dist ~ speed, data = cars)
 b = coef(fit)
